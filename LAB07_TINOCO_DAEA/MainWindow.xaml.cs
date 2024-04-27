@@ -32,5 +32,12 @@ namespace LAB07_TINOCO_DAEA
 
             dgCustomers.ItemsSource = customers;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ProductView productView = new ProductView();
+
+            productView.Show();
+        }
     }
 }
