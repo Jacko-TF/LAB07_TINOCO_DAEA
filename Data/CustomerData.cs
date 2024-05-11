@@ -11,7 +11,7 @@ namespace Data
 {
     public class CustomerData
     {
-        public List<Customer> GetCustomers()
+        public List<Customer> getCustomers()
         {
             List<Customer> customers = new List<Customer>();
 
@@ -40,6 +40,107 @@ namespace Data
             connection.Close();
 
             return customers;
+        }
+
+        public bool createCustomer(string name, string address, string phone )
+
+        {
+            try
+            {
+                string cadena = Connection.getCadenaConexion();
+
+                SqlConnection connection = new SqlConnection(cadena);
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("USP_InsertCustomer", connection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@ADDRESS", address);
+                command.Parameters.AddWithValue("@PHONE", phone);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+              
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool updateCustomer(int id, string name, string address, string phone)
+
+        {
+            try
+            {
+                string cadena = Connection.getCadenaConexion();
+
+                SqlConnection connection = new SqlConnection(cadena);
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("USP_UpdateCustomer", connection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@ADDRESS", address);
+                command.Parameters.AddWithValue("@PHONE", phone);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool deleteCustomer(int id)
+
+        {
+            try
+            {
+                string cadena = Connection.getCadenaConexion();
+
+                SqlConnection connection = new SqlConnection(cadena);
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("USP_DeleteCustomer", connection);
+
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@ID", id);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

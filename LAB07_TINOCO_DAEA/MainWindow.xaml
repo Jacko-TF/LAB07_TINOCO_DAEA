@@ -8,25 +8,53 @@
         Title="MainWindow" Height="500" Width="800">
     <Grid>
 
-        <StackPanel Margin="10" Height="400" Width="500">
+        <StackPanel Margin="10" Height="400" Width="600">
             <Button Margin="2" Click="Button_Click_1">Go to Products</Button>
 
             <Button Margin="2" Click="Button_Click">LIST CUSTOMERS</Button>
 
-            <StackPanel HorizontalAlignment="Left">
-                <TextBlock Margin="2">Name</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Margin="10">
 
-                <TextBox x:Name="txtCustomerName" Margin="2" Width="200"></TextBox>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2">ID</TextBlock>
+                        <TextBox x:Name="txtCustomerId" IsEnabled="False" Margin="2" Width="50"></TextBox>
+                        <Button Margin="2" Click="Button_Click_3" >Delete</Button>
+                        <Button Margin="2" Click="Button_Click_4">Clear</Button>
+                    </StackPanel>
+                    
+                    <TextBlock Margin="2">Name</TextBlock>
+
+                    <TextBox x:Name="txtCustomerName" Margin="2" Width="200"></TextBox>
+
+                    <TextBlock Margin="2">Address</TextBlock>
+
+                    <TextBox x:Name="txtCustomerAddress" Margin="2" Width="200"></TextBox>
+   
+                    <TextBlock Margin="2">Phone</TextBlock>
+
+                    <TextBox x:Name="txtCustomerPhone" Margin="2" Width="200"></TextBox>
+
+                    <Button Margin="2" Click="Button_Click_2">Insert</Button>
+                    
+                    <Button Margin="2" Click="Button_Click_5">Update</Button>
+
+                </StackPanel>
+
+                <StackPanel Margin="10" Width="350">
+
+                    <DataGrid x:Name="dgCustomers" AutoGenerateColumns="False" SelectionChanged="dgCustomers_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Customer ID" Binding="{Binding customer_id}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                            <DataGridTextColumn Header="Address" Binding="{Binding address}" />
+                            <DataGridTextColumn Header="Phone" Binding="{Binding phone}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
             </StackPanel>
-
-            <DataGrid x:Name="dgCustomers" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Customer ID" Binding="{Binding customer_id}" />
-                    <DataGridTextColumn Header="Name" Binding="{Binding name}" />
-                    <DataGridTextColumn Header="Address" Binding="{Binding address}" />
-                    <DataGridTextColumn Header="Phone" Binding="{Binding phone}" />
-                </DataGrid.Columns>
-            </DataGrid>
+            
             
         </StackPanel>
     </Grid>
